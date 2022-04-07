@@ -22,7 +22,7 @@ public class AndrewWeatherDetailsAPI {
 
     @Test
     public void weather_api_has_response_zipcode() {
-        AndrewWeatherDetails[] testResponse = testRestTemplate.getForObject("http://localhost:" + localPort + "/weather/extra?location=" + zipcode, AndrewWeatherDetails[].class);
+        AndrewWeatherDetails[] testResponse = testRestTemplate.getForObject("http://localhost:" + localPort + "i2p/weather/extra?location=" + zipcode, AndrewWeatherDetails[].class);
         assertThat(testResponse).isNotEmpty();
         assertThat(testResponse[0]).hasFieldOrProperty("high");
     }
@@ -30,14 +30,14 @@ public class AndrewWeatherDetailsAPI {
 
     @Test
     public void weather_api_has_no_response_to_fake_zipcode() {
-        AndrewWeatherDetails[] testResponse = testRestTemplate.getForObject("http://localhost:" + localPort + "/weather/extra?location=" + "0000000000", AndrewWeatherDetails[].class);
+        AndrewWeatherDetails[] testResponse = testRestTemplate.getForObject("http://localhost:" + localPort + "i2p/weather/extra?location=" + "0000000000", AndrewWeatherDetails[].class);
         assertThat(testResponse).isEmpty();
     }
 
 
     @Test
     public void weather_api_has_response_city() {
-        AndrewWeatherDetails[] testResponse = testRestTemplate.getForObject("http://localhost:" + localPort + "/weather/extra?location=" + city, AndrewWeatherDetails[].class);
+        AndrewWeatherDetails[] testResponse = testRestTemplate.getForObject("http://localhost:" + localPort + "i2p/weather/extra?location=" + city, AndrewWeatherDetails[].class);
         assertThat(testResponse).isNotEmpty();
         assertThat(testResponse[0]).hasFieldOrProperty("high");
     }
@@ -45,11 +45,11 @@ public class AndrewWeatherDetailsAPI {
     @Test
 //8 days: today plus the following 7 days
     public void weather_api_has_8_days() {
-        AndrewWeatherDetails[] testResponseCity = testRestTemplate.getForObject("http://localhost:" + localPort + "/weather/extra?location=" + city, AndrewWeatherDetails[].class);
+        AndrewWeatherDetails[] testResponseCity = testRestTemplate.getForObject("http://localhost:" + localPort + "i2p/weather/extra?location=" + city, AndrewWeatherDetails[].class);
         assertThat(testResponseCity).isNotEmpty();
         assertThat(testResponseCity.length).isEqualTo(8);
 
-        AndrewWeatherDetails[] testResponseZipcode = testRestTemplate.getForObject("http://localhost:" + localPort + "/weather/extra?location=" + zipcode, AndrewWeatherDetails[].class);
+        AndrewWeatherDetails[] testResponseZipcode = testRestTemplate.getForObject("http://localhost:" + localPort + "i2p/weather/extra?location=" + zipcode, AndrewWeatherDetails[].class);
         assertThat(testResponseZipcode).isNotEmpty();
         assertThat(testResponseZipcode.length).isEqualTo(8);
     }

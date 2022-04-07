@@ -21,19 +21,19 @@ public class GovResponseTest {
 
     @Test
     public void gov_weather_api_response_no_null() {
-        WeatherResponse testResponse = testRestTemplate.getForObject("http://localhost:" + localPort + "/weather?address=" + address, WeatherResponse.class);
+        WeatherResponse testResponse = testRestTemplate.getForObject("http://localhost:" + localPort + "i2p/weather?address=" + address, WeatherResponse.class);
         assertThat(testResponse).hasNoNullFieldsOrProperties();
     }
 
     @Test
     public void gov_weather_api_response_has_null_no_address() {
-        WeatherResponse testResponse = testRestTemplate.getForObject("http://localhost:" + localPort + "/weather?address=", WeatherResponse.class);
+        WeatherResponse testResponse = testRestTemplate.getForObject("http://localhost:" + localPort + "i2p/weather?address=", WeatherResponse.class);
         assertThat(testResponse).hasAllNullFieldsOrProperties();
     }
 
     @Test
     public void gov_weather_api_response_has_14_weatherDetails() {
-        WeatherResponse testResponse = testRestTemplate.getForObject("http://localhost:" + localPort + "/weather?address="  + address, WeatherResponse.class);
+        WeatherResponse testResponse = testRestTemplate.getForObject("http://localhost:" + localPort + "i2p/weather?address="  + address, WeatherResponse.class);
         assertThat(testResponse.getProperties().getPeriods().size()).isEqualTo(14);
     }
 
