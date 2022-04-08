@@ -10,14 +10,16 @@
   <div>
     <label v-if="show == 'zip'" id="cityLabel" for="city">Weather By City/Zip</label>
     <br>
-    <input v-model="zip" v-if="show == 'zip'" id="city" placeholder="City or Zip Code" type="text"/>
-    <button @click="getWeather" v-if="show == 'zip'">Get forecast</button>
+    <input @keyup.enter="getWeather" v-model="zip" v-if="show == 'zip'" id="city" placeholder="City or Zip Code" type="text"/>
+    <button  @click="getWeather" v-if="show == 'zip'">Get forecast</button>
 
     <label v-if="show == 'address'" id="addressLabel" for="address">Weather By Address</label>
     <br>
-    <input v-model="address" v-if="show == 'address'" id="address" placeholder="123 Sunset Drive Town California 99999" type="text"/>
-    <button @click="getGovWeather" v-if="show == 'address'">Get forecast</button>
+    <input @keyup.enter="getGovWeather" v-model="address" v-if="show == 'address'" id="address" placeholder="123 Sunset Drive Town California 99999" type="text"/>
+    <button  @click="getGovWeather" v-if="show == 'address'">Get forecast</button>
   </div>
+
+  <img src="../assets/loading_cloud.gif">
 </div>
 </template>
 
@@ -38,13 +40,13 @@ export default {
       getGovWeather() {
         services.getGovWeather(this.address)
         .then((res) => {
-          this.$store.state.forecast = res.data.properties.period;
+          this.$store.commit("SET_FORECAST", res.data.properties.periods)
         });
       },
       getWeather() {
         services.getWeather(this.zip)
           .then((res) => {
-            this.$store.state.forecast = res.data;
+            this.$store.commit("SET_FORECAST", res.data);
           });
       }
     }
@@ -54,7 +56,10 @@ export default {
 <style scoped>
 
 #city, #address {
-  width: 150%;
+  width: 100%;
+}
+button {
+  margin-top: 10px;
 }
 
 

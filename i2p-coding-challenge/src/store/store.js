@@ -8,6 +8,9 @@ export default new Vuex.Store({
    forecast: []
 },
   mutations: {
+    SET_FORECAST(state, data) {
+      state.forecast = data;
+    }
   },
   actions: {},
   modules: {},

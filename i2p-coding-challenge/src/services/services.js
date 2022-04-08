@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const http = axios.create({
-    baseURL: "https://andrew-pinner.asuscomm.com/i2p"
+    baseURL: "http://localhost:6060/i2p"
 });
 
 export default {

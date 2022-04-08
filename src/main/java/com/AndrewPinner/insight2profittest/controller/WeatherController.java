@@ -5,11 +5,13 @@ import com.AndrewPinner.insight2profittest.model.*;
 import com.AndrewPinner.insight2profittest.model.weathermapping.WeatherResponse;
 import com.AndrewPinner.insight2profittest.services.AndrewWeatherAPI;
 import com.AndrewPinner.insight2profittest.services.GovWeatherAPI;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 public class WeatherController {
     private GovWeatherAPI govWeatherAPI;
     private AndrewWeatherAPI andrewWeatherAPI;

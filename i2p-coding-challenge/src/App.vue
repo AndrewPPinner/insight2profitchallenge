@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <location-form/>
-    <weather-cards/>
+    <location-form id="form"/>
+    <weather-cards id="weather-cards"/>
   </div>
 </template>
 
@@ -33,9 +33,26 @@ body {
   margin-top: 60px;
 }
 #app {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 
+    ". . ."
+    ". form ."
+    "cards cards cards"
+  ;
+
 }
+#form {
+  display: flex;
+  flex-direction: column;
+  grid-area: form;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+#weather-cards {
+  grid-area: cards;
+}
+
+
 </style>
