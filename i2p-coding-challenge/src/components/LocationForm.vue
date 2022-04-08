@@ -19,7 +19,7 @@
     <button  @click="getGovWeather" v-if="show == 'address'">Get forecast</button>
   </div>
 
-  <img src="../assets/loading_cloud.gif">
+  <img v-if="isLoading" src="../assets/loading_cloud.gif">
 </div>
 </template>
 
@@ -33,21 +33,36 @@ export default {
       return {
         show: null,
         zip: null,
-        address: null
+        address: null,
+        isLoading: false
       }
     },
     methods: {
       getGovWeather() {
+        if(!this.address) {
+          alert("Address can not be left blank!")
+        } else {
+        this.isLoading = true;
         services.getGovWeather(this.address)
         .then((res) => {
-          this.$store.commit("SET_FORECAST", res.data.properties.periods)
+          this.$store.commit("SET_FORECAST", res.data.properties.periods);
+          this.isLoading = false;
         });
+        }
+
       },
       getWeather() {
+        if(!this.zip) {
+          alert("Input can not be left blank!")
+        } else {
+        this.isLoading = true;
         services.getWeather(this.zip)
-          .then((res) => {
+        .then((res) => {
             this.$store.commit("SET_FORECAST", res.data);
-          });
+            this.isLoading = false;
+        });
+        }
+        
       }
     }
 }
@@ -60,6 +75,9 @@ export default {
 }
 button {
   margin-top: 10px;
+}
+img {
+  margin: 50px;
 }
 
 
